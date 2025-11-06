@@ -1,0 +1,63 @@
+{% extends 'admin/layout.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+
+        </div>
+        <div class="col-1  text-center bg-white" >
+            <a href="/admin/add_Librarian" class = "nav-link text-black">
+                <h5> Back</h5>
+            </a>
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+            {%for message in get_flashed_messages()%}
+                {{message}}
+            {%endfor%}
+            <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <h1>Edit Librarian </h1>
+            <form action="/Librarian/update_Lib/{{name_to_up.id}}" method="POST">
+                {{form.hidden_tag()}}
+                {{form.hidden_tag()}}
+                {{form.fname.label(class="form-lable")}}
+                {{form.fname(class="form-control")}}
+                <br/>
+                {{form.lname.label(class="form-lable")}}
+                {{form.lname(class="form-control")}}
+                <br/>
+                {{form.email.label(class="form-lable")}}
+                {{form.email(class="form-control")}}
+                <br/>
+                {{form.password.label(class="form-lable")}}
+                {{form.password(class="form-control")}}
+                <br/>
+                {{form.edu.label(class="form-lable")}}
+                {{form.edu(class="form-control")}}
+                <br/>
+                {{ form.status.label(class="form-label") }}
+                {{ form.status(class="form-control") }}
+                <br/>
+                {{form.submit(class="btn btn-secondary")}}
+            
+            </form>
+            </div>
+        </div>
+        <div class="col-2">
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+{%endblock content %}

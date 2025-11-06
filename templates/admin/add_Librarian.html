@@ -1,0 +1,109 @@
+{% extends "admin/layout.html"%}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row p-2">
+        <div class="col-2">
+            <a href="/admin/dashboard" class="btn btn-info w-full">Dashboard</a>
+
+        </div>
+
+        <div class="col-8">
+
+        </div>
+
+        <div class="col-2">
+
+        </div>
+
+    </div>
+
+
+    <div class="row p-2">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+            {%for message in get_flashed_messages()%}
+                {{message}}
+            {%endfor%}
+            <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <h1>Add Librarian:  </h1>
+            <form method="POST">
+                {{form.hidden_tag()}}
+                {{form.fname.label(class="form-lable")}}
+                {{form.fname(class="form-control")}}
+                <br/>
+                {{form.lname.label(class="form-lable")}}
+                {{form.lname(class="form-control")}}
+                <br/>
+                {{form.email.label(class="form-lable")}}
+                {{form.email(class="form-control")}}
+                <br/>
+                {{form.password.label(class="form-lable")}}
+                {{form.password(class="form-control")}}
+                <br/>
+                {{form.edu.label(class="form-lable")}}
+                {{form.edu(class="form-control")}}
+                <br/>
+                {{ form.status.label(class="form-label") }}
+                {{ form.status(class="form-control") }}
+                <br/>
+                {{form.submit(class="btn btn-secondary")}}
+            
+            </form>
+            </div>
+        </div>
+        <div class="col-2">
+
+        </div>
+
+
+    </div>
+    
+    <div class="row pb-5">
+        <div class="col-2">
+
+        </div>
+
+        <div class="col-8">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    {%for all_lib in all_lib%}
+                    <tr>
+                        <th scope="row">{{all_lib.id}}</th>
+                        <td>{{all_lib.fname}} </td>
+                        <td>{{all_lib.lname}} </td>
+                        <td><a href="{{url_for('updateLib',id=all_lib.id)}}"class="btn btn-success" id="update">Edit</a></td>
+                        <td><a href="{{url_for('delLib', id=all_lib.id)}}" class="btn btn-danger" id="delete" onclick="return confirm('Are you sure you want to delete this Librarian?')">Delete</a></td>
+                    </tr>
+                
+                  {%endfor%}
+                </tbody>
+              </table>
+        </div>
+
+        <div class="col-2">
+
+        </div>
+
+    </div>
+    
+
+
+</div>
+
+
+
+
+{%endblock content%}

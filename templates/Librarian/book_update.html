@@ -1,0 +1,50 @@
+{% extends "Librarian/layout.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+
+        </div>
+        <div class="col-1  text-center bg-white" >
+            <a href="/Librarian/booklist" class = "nav-link text-black">
+                <h5> Back</h5>
+            </a>
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+            {%for message in get_flashed_messages()%}
+                {{message}}
+            {%endfor%}
+            <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <h1>Book List:  </h1>
+            <form action="/Librarian/book_update/{{name_to_up.id}}" method="POST">
+                {{form.hidden_tag()}}
+                {{form.name.label(class="form-lable")}}
+                {{form.name(class="form-control",value= name_to_up.name)}}
+                <br/>
+                {{form.genre.label(class="form-label")}}
+                {{form.genre(class="form-control")}}
+                <br/>
+                {{ form.image.label(class="form-label") }}
+                {{ form.image(class="form-control") }}
+                <br/>
+                {{form.submit(class="btn btn-secondary")}}
+            
+            </form>
+            </div>
+        </div>
+        <div class="col-2">
+
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock content %}
